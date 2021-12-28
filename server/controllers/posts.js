@@ -15,6 +15,19 @@ export const getPosts = async (req, res) => {
   }
 };
 
+//get post by id
+export const getPost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const post = await PostMessage.findById(id);
+
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 //create post
 export const createPost = async (req, res) => {
   const { title, message, selectedFile, creator, tags } = req.body;
