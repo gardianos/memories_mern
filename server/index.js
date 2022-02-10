@@ -19,6 +19,10 @@ app.use(cors());
 
 app.use("/posts", postRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to API 1.0");
+});
+
 //connection with database
 
 const PORT = process.env.PORT || 7000;
