@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 import * as actionType from "../../constants/actionTypes";
 import useStyles from "./styles";
-import memories from "../../images/memories.jpg";
 
 function Navbar() {
   const classes = useStyles();
@@ -35,12 +34,11 @@ function Navbar() {
           component={Link}
           to="/"
           className={classes.heading}
-          variant="h2"
+          variant="h5"
           align="center"
         >
-          Memories
+          IMemories
         </Typography>
-        <img className={classes.image} src={memories} alt="icon" height="45" />
       </div>
       <Toolbar className={classes.toolbar}>
         {user ? (
