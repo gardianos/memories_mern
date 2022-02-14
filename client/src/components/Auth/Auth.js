@@ -7,7 +7,7 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 
@@ -22,7 +22,7 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const history = useHistory();
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
