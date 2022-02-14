@@ -51,7 +51,7 @@ const Form = ({ currentId, setCurrentId }) => {
   if (!user?.result?.name) {
     return (
       <Paper className={classes.paper}>
-        <Typography variant="h6" align="center">
+        <Typography variant="body1" align="center">
           Please you can Sign In to create your own IMemories like anybody here!{" "}
         </Typography>
       </Paper>
