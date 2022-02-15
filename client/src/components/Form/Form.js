@@ -69,7 +69,6 @@ const Form = ({ currentId, setCurrentId }) => {
         <Typography variant="h6">
           {currentId ? `Editing "${post.title}"` : "Creating a Memory"}
         </Typography>
-
         <TextField
           name="title"
           variant="outlined"
