@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import { useDispatch } from "react-redux";
+import decode from "jwt-decode";
 
 import * as actionType from "../../constants/actionTypes";
 import useStyles from "./styles";
@@ -10,8 +11,8 @@ function Navbar() {
   const classes = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
-  const history = useHistory();
   const location = useLocation();
+  const history = useHistory();
 
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
@@ -23,7 +24,11 @@ function Navbar() {
   useEffect(() => {
     const token = user?.token;
 
-    //JWT token to do
+    if (token) {
+      const decodedToken = decode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
