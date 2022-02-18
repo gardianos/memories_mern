@@ -1,6 +1,7 @@
 import {
   FETCH_ALL,
   FETCH_BY_SEARCH,
+  FETCH_POST,
   CREATE,
   UPDATE,
   DELETE,
@@ -10,6 +11,18 @@ import {
 } from "../constants/actionTypes";
 
 import * as api from "../api/index.js";
+
+export const getPost = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
+
+    const { data } = await api.fetchPost(id);
+
+    dispatch({ type: FETCH_POST, payload: { post: data } });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getPosts = (page) => async (dispatch) => {
   try {
