@@ -10,12 +10,10 @@ import {
   END_LOADING,
 } from "../constants/actionTypes";
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
     case START_LOADING:
       return { ...state, isLoading: true };
-
     case END_LOADING:
       return { ...state, isLoading: false };
 
@@ -27,7 +25,7 @@ export default (state = { isLoading: true, posts: [] }, action) => {
         numberOfPages: action.payload.numberOfPages,
       };
     case FETCH_BY_SEARCH:
-      return { ...state, posts: action.payload };
+      return { ...state, posts: action.payload.data };
     case FETCH_POST:
       return { ...state, post: action.payload.post };
     case LIKE:
