@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
-import { likePost, deletePost } from "../../../actions/posts";
+import { getPost, likePost, deletePost } from "../../../actions/posts";
 import useStyles from "./styles";
 
 const Post = ({ post, setCurrentId }) => {
@@ -52,7 +52,11 @@ const Post = ({ post, setCurrentId }) => {
       </>
     );
   };
-  const openPost = () => history.push(`/posts/${post._id}`);
+  const openPost = (e) => {
+    // dispatch(getPost(post._id, history));
+
+    history.push(`/posts/${post._id}`);
+  };
 
   return (
     <Card className={classes.card} raised elevation={6}>

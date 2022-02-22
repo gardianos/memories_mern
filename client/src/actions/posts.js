@@ -27,14 +27,17 @@ export const getPost = (id) => async (dispatch) => {
 export const getPosts = (page) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
-    const { data } = await api.fetchPosts(page);
+    const {
+      data: { data, currentPage, numberOfPages },
+    } = await api.fetchPosts(page);
 
-    console.log(data);
-
-    dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({
+      type: FETCH_ALL,
+      payload: { data, currentPage, numberOfPages },
+    });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
@@ -58,8 +61,10 @@ export const createPost = (post, history) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
-    history.push(`/posts/${data._id}`);
+
     dispatch({ type: CREATE, payload: data });
+
+    history.push(`/posts/${data._id}`);
   } catch (error) {
     console.log(error);
   }
