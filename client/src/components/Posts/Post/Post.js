@@ -12,6 +12,7 @@ import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
+import InfoIcon from "@material-ui/icons/Info";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
@@ -22,11 +23,11 @@ import useStyles from "./styles";
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const history = useHistory();
   const user = JSON.parse(localStorage.getItem("profile"));
+  const history = useHistory();
 
   const Likes = () => {
-    if (post.likes.length > 0) {
+    if (post?.likes?.length > 0) {
       return post.likes.find(
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
@@ -52,6 +53,7 @@ const Post = ({ post, setCurrentId }) => {
       </>
     );
   };
+
   const openPost = (e) => {
     // dispatch(getPost(post._id, history));
 
